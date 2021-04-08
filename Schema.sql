@@ -1,3 +1,4 @@
+#CREATE DATABASE streamerdb;
 USE streamerdb;
 
 DROP TABLE IF EXISTS TopFan;
@@ -163,6 +164,11 @@ Insert Watching VALUES
 ('184186', '000003', '2021-04-03', '02:05'),
 ('184185', '000004', '2021-04-07', '00:35');
 
+CREATE VIEW crime_movies as
+	SELECT *
+    FROM MOVIE
+    WHERE Genre LIKE '%Crime%';
+
 SELECT * FROM Customer;
 SELECT * FROM Movie;
 SELECT * FROM Instructor;
@@ -171,3 +177,4 @@ SELECT * FROM Instructs;
 SELECT * FROM ActsIn;
 SELECT * FROM TopFan;
 SELECT * FROM Watching;
+SELECT * FROM crime_movies;

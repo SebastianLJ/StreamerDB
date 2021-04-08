@@ -94,6 +94,11 @@ FOREIGN KEY(UserID) REFERENCES Customer(UserID) ON DELETE CASCADE,
 FOREIGN KEY(MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
 );
 
+CREATE VIEW crime_movies as
+	SELECT *
+    FROM MOVIE
+    WHERE Genre LIKE '%Crime%';
+
 # population of db
 
 INSERT Customer VALUES
@@ -166,10 +171,6 @@ Insert Watching VALUES
 ('184186', '000003', '2021-04-03', '02:05'),
 ('184185', '000004', '2021-04-07', '00:35');
 
-CREATE VIEW crime_movies as
-	SELECT *
-    FROM MOVIE
-    WHERE Genre LIKE '%Crime%';
 
 SELECT * FROM Customer;
 SELECT * FROM Movie;

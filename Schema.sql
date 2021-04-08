@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#CREATE DATABASE streamerdb;
+>>>>>>> ac0e3f47ae8a0840e51e1cc40b0b59f7b6f0ca6d
 USE streamerdb;
 
 DROP TABLE IF EXISTS TopFan;
@@ -9,6 +13,7 @@ DROP TABLE IF EXISTS Customer;
 DROP TABLE IF EXISTS Actor;
 DROP TABLE IF EXISTS Instructor;
 DROP TABLE IF EXISTS Movie;
+DROP VIEW IF EXISTS crime_movies;
 
 
 
@@ -39,7 +44,8 @@ CREATE TABLE Movie
 MovieID VARCHAR(6),
 MovieName VARCHAR(50),
 ReleaseDate DATE,
-Genre SET('Action', 'Crime', 'Comedy', 'Documentary', 'Drama', 'Horror', 'Romantic', 'Sci-fi', 'Sport', 'Western'),
+Genre SET('Action', 'Crime', 'Comedy', 'Documentary', 'Drama', 
+			'Horror', 'Romantic', 'Sci-fi', 'Sport', 'Western'),
 Length TIME,
 PRIMARY KEY(MovieID)
 );
@@ -151,7 +157,8 @@ INSERT ActsIn VALUES
 ('200010', '000004');
 
 INSERT TopFan VALUES
-('Noah Bastian Christiansen', '200011');
+('Noah Bastian Christiansen', '200011'),
+('Anne Haxthausen', '200000');
 
 INSERT Favorite VALUES
 ('184209', '000000', '2021-04-01'),
@@ -159,8 +166,14 @@ INSERT Favorite VALUES
 ('184209', '000004', '2021-04-03');
 
 Insert Watching VALUES
-('184186', '000001', '2021-04-07', '01:22'),
+('184186', '000001', '2021-04-01', '01:22'),
+('184186', '000003', '2021-04-03', '02:05'),
 ('184185', '000004', '2021-04-07', '00:35');
+
+CREATE VIEW crime_movies as
+	SELECT *
+    FROM MOVIE
+    WHERE Genre LIKE '%Crime%';
 
 SELECT * FROM Customer;
 SELECT * FROM Movie;
@@ -170,3 +183,4 @@ SELECT * FROM Instructs;
 SELECT * FROM ActsIn;
 SELECT * FROM TopFan;
 SELECT * FROM Watching;
+SELECT * FROM crime_movies;

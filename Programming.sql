@@ -32,8 +32,36 @@ SELECT MovieName INTO vMovieName FROM Movie WHERE MovieId = vMovieId;
 END//
 DELIMITER ;
 
-SELECT * FROM Movie;
-
 CALL getMovieName('000001', @MovieName);
 SELECT @MovieName;
 
+DROP PROCEDURE getTopFan;
+DELIMITER //
+CREATE PROCEDURE getTopFan(IN vActorID VARCHAR(6), OUT vTopFan VARCHAR(50))
+BEGIN 
+SELECT FullName INTO vTopFan FROM TopFan WHERE ActorID = vActorID;
+END//
+DELIMITER ;
+
+CALL getTopFan('200000', @TopFan);
+SELECT @TopFan;
+
+SET GLOBAL event_scheduler = 1;
+
+CREATE TABLE GiftLog(
+	TS		TIMESTAMP,
+    TopFan 	VARCHAR(50),
+    Gift	VARCHAR(100));
+
+DROP EVENT CongratulateTopFan;
+DELIMITER //
+CREATE EVENT CongratulateTopFan 
+ON SCHEDULE EVERY 1 MONTH
+DO BEGIN 
+	CALL getTopFan('200000', @TopFan);
+	INSERT INTO GiftLog VALUES (CURRENT_TIMESTAMP, @TopFan,"100$");
+    END // 
+DELIMITER ;
+
+SELECT * FROM GiftLog;
+DELETE FROM GiftLog;

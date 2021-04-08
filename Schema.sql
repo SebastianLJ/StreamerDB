@@ -151,7 +151,8 @@ INSERT ActsIn VALUES
 ('200010', '000004');
 
 INSERT TopFan VALUES
-('Noah Bastian Christiansen', '200011');
+('Noah Bastian Christiansen', '200011'),
+('Anne Haxthausen', '200000');
 
 INSERT Favorite VALUES
 ('184209', '000000', '2021-04-01'),

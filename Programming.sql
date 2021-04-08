@@ -1,9 +1,14 @@
 USE streamerdb;
 
+SET SQL_SAFE_UPDATES = 0;
+
 DROP FUNCTION IF EXISTS getActorName;
 DROP FUNCTION IF EXISTS getInstName;
 DROP PROCEDURE IF EXISTS getMovieName;
 DROP TRIGGER IF EXISTS finished_movie_check;
+DROP PROCEDURE IF EXISTS getTopFan;
+DROP EVENT IF EXISTS CongratulateTopFan;
+DROP TABLE IF EXISTS GiftLog;
 
 
 DELIMITER // 
@@ -36,11 +41,10 @@ SELECT MovieName INTO vMovieName FROM Movie WHERE MovieId = vMovieId;
 END//
 DELIMITER ;
 
-SELECT * FROM Movie;
-
 CALL getMovieName('000001', @MovieName);
 SELECT @MovieName;
 
+<<<<<<< HEAD
 DELIMITER //
 CREATE TRIGGER finished_movie_check BEFORE UPDATE ON Watching
 FOR EACH ROW
@@ -55,3 +59,34 @@ SELECT * FROM watching;
 SELECT * FROM Favorite;
 UPDATE Watching SET TimeSeen='02:22', DateWatched = curdate() WHERE MovieID='000000';
 SELECT * FROM Favorite
+
+
+DELIMITER //
+CREATE PROCEDURE getTopFan(IN vActorID VARCHAR(6), OUT vTopFan VARCHAR(50))
+BEGIN 
+SELECT FullName INTO vTopFan FROM TopFan WHERE ActorID = vActorID;
+END//
+DELIMITER ;
+
+CALL getTopFan('200000', @TopFan);
+SELECT @TopFan;
+
+SET GLOBAL event_scheduler = 1;
+
+CREATE TABLE GiftLog(
+	TS		TIMESTAMP,
+    TopFan 	VARCHAR(50),
+    Gift	VARCHAR(100));
+
+
+DELIMITER //
+CREATE EVENT CongratulateTopFan 
+ON SCHEDULE EVERY 1 MONTH
+DO BEGIN 
+	CALL getTopFan('200000', @TopFan);
+	INSERT INTO GiftLog VALUES (CURRENT_TIMESTAMP, @TopFan,"100$");
+    END // 
+DELIMITER ;
+
+SELECT * FROM GiftLog;
+DELETE FROM GiftLog;

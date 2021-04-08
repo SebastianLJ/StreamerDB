@@ -161,3 +161,12 @@ INSERT Favorite VALUES
 Insert Watching VALUES
 ('184186', '000001', '2021-04-07', '01:22'),
 ('184185', '000004', '2021-04-07', '00:35');
+
+SELECT * FROM Customer;
+SELECT * FROM Movie;
+SELECT * FROM Instructor;
+SELECT * FROM Actor;
+SELECT * FROM Instructs;
+SELECT * FROM ActsIn;
+SELECT * FROM TopFan;
+SELECT * FROM Watching;

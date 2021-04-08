@@ -1,4 +1,3 @@
-CREATE DATABASE streamerdb;
 USE streamerdb;
 
 DROP TABLE IF EXISTS TopFan;

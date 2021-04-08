@@ -1,4 +1,6 @@
+CREATE DATABASE streamerdb;
 USE streamerdb;
+
 # A SELECT Query that uses NATURAL JOIN and WHERE to find the instructors who has instructed a film of the 'Crime' genre by using pattern matching. 
 SELECT InstId, Genre FROM Movie NATURAL JOIN Instructs WHERE Genre LIKE '%Crime%';
 

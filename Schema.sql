@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 #CREATE DATABASE streamerdb;
+>>>>>>> ac0e3f47ae8a0840e51e1cc40b0b59f7b6f0ca6d
 USE streamerdb;
 
 DROP TABLE IF EXISTS TopFan;
@@ -159,7 +162,8 @@ INSERT ActsIn VALUES
 ('200010', '000004');
 
 INSERT TopFan VALUES
-('Noah Bastian Christiansen', '200011');
+('Noah Bastian Christiansen', '200011'),
+('Anne Haxthausen', '200000');
 
 INSERT Favorite VALUES
 ('184209', '000000', '2021-04-01'),

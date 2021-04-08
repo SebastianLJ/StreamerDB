@@ -1,0 +1,39 @@
+USE streamerdb;
+
+DROP FUNCTION getActorName;
+DELIMITER // 
+CREATE FUNCTION getActorName(vActorId VARCHAR(6)) RETURNS VARCHAR(50)
+BEGIN
+DECLARE ActorName VARCHAR(50); 
+SELECT FullName INTO ActorName FROM Actor WHERE ActorId = vActorId;
+RETURN ActorName;
+END//
+DELIMITER ;
+
+SELECT getActorName('200000');
+
+DROP FUNCTION getInstName;
+DELIMITER // 
+CREATE FUNCTION getInstName(vInstId VARCHAR(6)) RETURNS VARCHAR(50)
+BEGIN
+DECLARE InstName VARCHAR(50); 
+SELECT FullName INTO InstName FROM Instructor WHERE InstId = vInstId;
+RETURN InstName;
+END//
+DELIMITER ;
+
+SELECT getInstName(100000);
+
+DROP PROCEDURE getMovieName;
+DELIMITER //
+CREATE PROCEDURE getMovieName(IN vMovieId VARCHAR(6), OUT vMovieName VARCHAR(50))
+BEGIN 
+SELECT MovieName INTO vMovieName FROM Movie WHERE MovieId = vMovieId;
+END//
+DELIMITER ;
+
+SELECT * FROM Movie;
+
+CALL getMovieName('000001', @MovieName);
+SELECT @MovieName;
+

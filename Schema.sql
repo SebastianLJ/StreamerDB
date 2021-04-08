@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS Customer;
 DROP TABLE IF EXISTS Actor;
 DROP TABLE IF EXISTS Instructor;
 DROP TABLE IF EXISTS Movie;
+DROP VIEW IF EXISTS crime_movies;
 
 
 
@@ -40,7 +41,8 @@ CREATE TABLE Movie
 MovieID VARCHAR(6),
 MovieName VARCHAR(50),
 ReleaseDate DATE,
-Genre SET('Action', 'Crime', 'Comedy', 'Documentary', 'Drama', 'Horror', 'Romantic', 'Sci-fi', 'Sport', 'Western'),
+Genre SET('Action', 'Crime', 'Comedy', 'Documentary', 'Drama', 
+			'Horror', 'Romantic', 'Sci-fi', 'Sport', 'Western'),
 Length TIME,
 PRIMARY KEY(MovieID)
 );

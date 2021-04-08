@@ -1,4 +1,3 @@
-CREATE DATABASE streamerdb;
 USE streamerdb;
 
 DROP TABLE IF EXISTS TopFan;
@@ -160,7 +159,8 @@ INSERT Favorite VALUES
 ('184209', '000004', '2021-04-03');
 
 Insert Watching VALUES
-('184186', '000001', '2021-04-07', '01:22'),
+('184186', '000001', '2021-04-01', '01:22'),
+('184186', '000003', '2021-04-03', '02:05'),
 ('184185', '000004', '2021-04-07', '00:35');
 
 SELECT * FROM Customer;

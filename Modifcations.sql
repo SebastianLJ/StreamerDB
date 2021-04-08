@@ -22,12 +22,12 @@ SELECT * FROM Customer WHERE UserID='184186';
 UPDATE Customer SET Subscription=false WHERE UserID='184186';
 SELECT * FROM Customer WHERE UserID='184186';
 
-# A user can also remove a movie from his list of favorite movies.
+# A user removes Shawshank Redemption from his list of favorite movies.
 SELECT * FROM Favorite WHERE UserID='184209';
 DELETE FROM Favorite WHERE UserID='184209' AND MovieID='000000';
 SELECT * FROM Favorite WHERE UserID='184209';
 
-# A user has finished a movie and is thus no longer watching it.
+# A user has finished watching Godfather and is no longer watching it.
 SELECT * FROM Watching WHERE UserID='184186' AND MovieID ='000001';
 DELETE FROM Watching WHERE  UserID='184186' AND MovieID ='000001';
 SELECT * FROM Watching WHERE UserID='184186' AND MovieID ='000001';

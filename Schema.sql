@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 #CREATE DATABASE streamerdb;
->>>>>>> ac0e3f47ae8a0840e51e1cc40b0b59f7b6f0ca6d
 USE streamerdb;
 
 DROP TABLE IF EXISTS TopFan;

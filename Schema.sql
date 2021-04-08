@@ -1,0 +1,83 @@
+CREATE DATABASE streamerdb;
+USE streamerdb;
+
+CREATE TABLE Customer
+(
+UserID	VARCHAR(10),
+FullName	VARCHAR(50),
+Subscription bool,
+PRIMARY KEY(UserID)
+);
+
+CREATE TABLE Actor
+(
+ActorID	 VARCHAR(10),
+FullName	VARCHAR(50),
+PRIMARY KEY(ActorID)
+);
+
+CREATE TABLE Instructor
+(
+InstID	VARCHAR(10),
+FullName VARCHAR(50),
+PRIMARY KEY(InstID)
+);
+
+CREATE TABLE Movie
+(
+MovieID VARCHAR(10),
+MovieName VARCHAR(50),
+ReleaseDate DATE,
+Genre ENUM('Action', 'Comedy', 'Documentary', 'Drama', 'Horror', 'Romantic', 'Sci-fi', 'Sport'),
+Length TIME,
+PRIMARY KEY(MovieID)
+);
+
+CREATE TABLE ActsIn
+(
+ActorID VARCHAR(10),
+MovieID VARCHAR(10),
+PRIMARY KEY(ActorID, MovieID),
+FOREIGN KEY(ActorID) REFERENCES Actor(ActorID) ON DELETE CASCADE,
+FOREIGN KEY(MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
+);
+
+CREATE TABLE Instructs
+(
+InstID VARCHAR(10),
+MovieID VARCHAR(10),
+PRIMARY KEY(InstID, MovieID),
+FOREIGN KEY(InstID) REFERENCES Instructor(InstID) ON DELETE CASCADE,
+FOREIGN KEY(MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
+);
+
+CREATE TABLE TopFan
+(
+FullName VARCHAR(50),
+ActorID VARCHAR(10),
+PRIMARY KEY (FullName, ActorID),
+FOREIGN KEY(ActorID) REFERENCES Actor(ActorID)
+);
+
+CREATE TABLE Watching
+(
+UserID VARCHAR(10),
+MovieID VARCHAR(10),
+DateWatched DATE,
+TimeSeen TIME,
+PRIMARY KEY(UserID, MovieID),
+FOREIGN KEY(UserID) REFERENCES Customer(UserID) ON DELETE CASCADE,
+FOREIGN KEY(MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
+);
+
+CREATE TABLE Favorite
+(
+UserID VARCHAR(10),
+MovieID VARCHAR(10),
+DateFavorited DATE,
+PRIMARY KEY(UserID, MovieID),
+FOREIGN KEY(UserID) REFERENCES Customer(UserID) ON DELETE CASCADE,
+FOREIGN KEY(MovieID) REFERENCES Movie(MovieID) ON DELETE CASCADE
+);
+
+
